@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GeekTomorrow — Your data. Your home. No subscriptions.</title>
+  <title>uncloud — Your data. Your home. No subscriptions.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -13,10 +13,11 @@
   <link rel="apple-touch-icon" href="fav.png" />
 
   <!-- WhatsApp / Social sharing thumbnail -->
-  <meta property="og:title" content="GeekTomorrow — Your data. Your home. No subscriptions." />
+  <meta property="og:title" content="uncloud — Your data. Your home. No subscriptions." />
   <meta property="og:description" content="A plug-and-play home server that replaces Google Photos, iCloud, and Dropbox. One-time setup. Yours forever." />
   <meta property="og:url" content="https://www.geektomorrow.tech/" />
   <meta property="og:image" content="https://www.geektomorrow.tech/fav.png" />
+
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://www.geektomorrow.tech/fav.png" />
@@ -71,10 +72,37 @@
       height: 64px;
     }
     .nav__logo {
-      font-size: 20px; font-weight: 900; letter-spacing: -1px;
-      color: var(--white);
+      font-size: 22px; font-weight: 900; letter-spacing: -0.5px;
+      color: var(--white); display: flex; align-items: center; gap: 2px;
     }
-    .nav__logo span { color: var(--yellow); }
+    .nav__logo .logo-un {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 2px 7px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 2px solid var(--black);
+      line-height: 1.4;
+    }
+    .nav__logo .logo-cloud {
+      color: var(--white);
+      text-decoration: line-through;
+      text-decoration-color: var(--yellow);
+      text-decoration-thickness: 3px;
+    }
+    .nav__by {
+      font-size: 11px; font-weight: 600; color: rgba(255,255,255,.45);
+      margin-left: 10px; padding-left: 10px;
+      border-left: 1.5px solid rgba(255,255,255,.2);
+      letter-spacing: 0.2px;
+    }
+    .nav__by a {
+      color: var(--yellow); font-weight: 700; text-decoration: none;
+      opacity: .85; transition: opacity .15s;
+    }
+    .nav__by a:hover { opacity: 1; }
 
     .nav-btn {
       display: inline-flex; align-items: center; gap: 6px;
@@ -285,28 +313,6 @@
     }
     .form-success.show { display: flex; }
 
-    /* ════════════════════════════════════
-       TICKER / MARQUEE
-    ════════════════════════════════════ */
-    .ticker {
-      border-top: var(--border);
-      border-bottom: var(--border);
-      background: var(--yellow);
-      overflow: hidden;
-      padding: 12px 0;
-      white-space: nowrap;
-    }
-    .ticker__track {
-      display: inline-flex; gap: 0;
-      animation: marquee 20s linear infinite;
-    }
-    .ticker__item {
-      font-size: 13px; font-weight: 800; text-transform: uppercase;
-      letter-spacing: 1px; padding: 0 28px;
-      border-right: var(--border);
-    }
-    .ticker__item:last-child { border-right: none; }
-    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
     /* ════════════════════════════════════
        SECTION BASE
@@ -465,7 +471,7 @@
 
     /* big decorative letters */
     .waitlist-section::before {
-      content: 'GT';
+      content: 'UC';
       position: absolute; bottom: -40px; right: -20px;
       font-size: 280px; font-weight: 900; letter-spacing: -10px;
       color: white; opacity: .03; user-select: none; line-height: 1;
@@ -538,10 +544,68 @@
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 12px;
     }
-    .footer__logo { font-size: 18px; font-weight: 900; letter-spacing: -1px; color: white; }
-    .footer__logo span { color: var(--yellow); }
+    .footer__logo { font-size: 18px; font-weight: 900; color: white; display: flex; align-items: center; gap: 2px; }
+    .footer__logo .logo-un {
+      background: var(--yellow); color: var(--black);
+      padding: 1px 6px; font-size: 11px; font-weight: 900;
+      letter-spacing: 1px; text-transform: uppercase;
+      border: 2px solid var(--black); line-height: 1.4;
+    }
+    .footer__logo .logo-cloud {
+      color: white; text-decoration: line-through;
+      text-decoration-color: var(--yellow); text-decoration-thickness: 2px;
+    }
     .footer__copy { font-size: 13px; color: rgba(255,255,255,.6); font-weight: 600; }
     .footer__heart { color: var(--yellow); }
+    .footer__by { display: none; }
+
+    /* ── Made by Novion ── */
+    .madeby {
+      background: var(--black);
+      border-top: var(--border);
+      border-bottom: var(--border);
+      padding: 28px 24px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px;
+    }
+    .madeby__label {
+      font-size: 11px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 2px; color: rgba(255,255,255,.35);
+    }
+    .madeby__divider {
+      width: 32px; height: 2px; background: rgba(255,255,255,.1);
+    }
+    .madeby__maker {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 2px solid rgba(255,255,255,.15);
+      padding: 10px 20px;
+      text-decoration: none;
+      box-shadow: 4px 4px 0 rgba(255,255,255,.06);
+      transition: border-color .15s, box-shadow .15s, transform .12s;
+    }
+    .madeby__maker:hover {
+      border-color: var(--yellow);
+      box-shadow: 4px 4px 0 var(--yellow);
+      transform: translate(-2px, -2px);
+    }
+    .madeby__dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--teal);
+      animation: blink 1.8s infinite;
+      flex-shrink: 0;
+    }
+    .madeby__name {
+      font-size: 18px; font-weight: 900; letter-spacing: -0.5px;
+      color: white;
+    }
+    .madeby__name span { color: var(--yellow); }
+    .madeby__arrow {
+      font-size: 14px; color: rgba(255,255,255,.3);
+      transition: color .15s, transform .15s;
+    }
+    .madeby__maker:hover .madeby__arrow {
+      color: var(--yellow); transform: translateX(3px);
+    }
 
     /* ════════════════════════════════════
        RESPONSIVE
@@ -573,8 +637,145 @@
       .waitlist-row { flex-direction: column; }
       .waitlist-input { border-right: 2px solid white; border-bottom: none; }
       .btn-yellow { width: 100%; justify-content: center; }
-      .ticker__item { padding: 0 20px; }
     }
+
+    /* ════════════════════════════════════
+       CRAZY ANIMATIONS
+    ════════════════════════════════════ */
+
+    /* fly-in from wild angles */
+    @keyframes flyInLeft {
+      0%   { opacity:0; transform: translateX(-180px) rotate(-15deg) scale(.7); }
+      60%  { transform: translateX(20px) rotate(3deg) scale(1.05); }
+      80%  { transform: translateX(-8px) rotate(-1deg); }
+      100% { opacity:1; transform: none; }
+    }
+    @keyframes flyInRight {
+      0%   { opacity:0; transform: translateX(180px) rotate(15deg) scale(.7); }
+      60%  { transform: translateX(-20px) rotate(-3deg) scale(1.05); }
+      80%  { transform: translateX(8px) rotate(1deg); }
+      100% { opacity:1; transform: none; }
+    }
+    @keyframes flyInBottom {
+      0%   { opacity:0; transform: translateY(120px) rotate(8deg) scale(.75); }
+      55%  { transform: translateY(-18px) rotate(-2deg) scale(1.06); }
+      75%  { transform: translateY(8px) rotate(1deg); }
+      100% { opacity:1; transform: none; }
+    }
+    @keyframes flyInTop {
+      0%   { opacity:0; transform: translateY(-100px) rotate(-10deg) scale(.8); }
+      60%  { transform: translateY(14px) rotate(2deg); }
+      100% { opacity:1; transform: none; }
+    }
+    @keyframes tadaa {
+      0%   { transform: scale(0) rotate(-12deg); opacity:0; }
+      40%  { transform: scale(1.2) rotate(4deg); opacity:1; }
+      60%  { transform: scale(.92) rotate(-2deg); }
+      80%  { transform: scale(1.06) rotate(1deg); }
+      100% { transform: scale(1) rotate(0); opacity:1; }
+    }
+    @keyframes jiggle {
+      0%,100%{ transform: rotate(0deg) scale(1); }
+      10%    { transform: rotate(-18deg) scale(1.3); }
+      20%    { transform: rotate(14deg) scale(1.2); }
+      30%    { transform: rotate(-10deg) scale(1.15); }
+      40%    { transform: rotate(8deg) scale(1.1); }
+      50%    { transform: rotate(-6deg) scale(1.05); }
+      60%    { transform: rotate(4deg); }
+      70%    { transform: rotate(-2deg); }
+    }
+    @keyframes rubberbandIn {
+      0%   { opacity:0; transform: scaleX(0.1) scaleY(2.5); }
+      30%  { transform: scaleX(1.2) scaleY(0.8); opacity:1; }
+      50%  { transform: scaleX(0.9) scaleY(1.1); }
+      70%  { transform: scaleX(1.05) scaleY(0.97); }
+      100% { transform: scaleX(1) scaleY(1); opacity:1; }
+    }
+    @keyframes spinIn {
+      0%   { opacity:0; transform: rotate(-360deg) scale(0); }
+      70%  { transform: rotate(20deg) scale(1.1); opacity:1; }
+      85%  { transform: rotate(-10deg) scale(.97); }
+      100% { opacity:1; transform: none; }
+    }
+    @keyframes floatUp {
+      0%   { opacity:0; transform: translateY(0) scale(.5); }
+      15%  { opacity:1; }
+      85%  { opacity:.7; }
+      100% { opacity:0; transform: translateY(-90vh) scale(1) rotate(360deg); }
+    }
+    @keyframes wiggleHeader {
+      0%,100%{ transform: skewX(0deg); }
+      20%    { transform: skewX(-3deg) scaleX(1.02); }
+      40%    { transform: skewX(2.5deg); }
+      60%    { transform: skewX(-1.5deg); }
+      80%    { transform: skewX(1deg); }
+    }
+    @keyframes hoverShake {
+      0%,100%{ transform: translate(0,0) rotate(0); }
+      20%    { transform: translate(-4px,2px) rotate(-2deg); }
+      40%    { transform: translate(4px,-2px) rotate(2deg); }
+      60%    { transform: translate(-3px,3px) rotate(-1deg); }
+      80%    { transform: translate(3px,-1px) rotate(1deg); }
+    }
+    @keyframes popIn {
+      0%   { opacity:0; transform: scale(0) rotate(-20deg); }
+      50%  { transform: scale(1.25) rotate(5deg); opacity:1; }
+      75%  { transform: scale(.9) rotate(-2deg); }
+      100% { opacity:1; transform: none; }
+    }
+    @keyframes slamDown {
+      0%   { opacity:0; transform: translateY(-60px) scaleY(1.4); }
+      50%  { transform: translateY(10px) scaleY(.9); opacity:1; }
+      75%  { transform: translateY(-4px) scaleY(1.02); }
+      100% { opacity:1; transform: none; }
+    }
+    @keyframes bounceSpin {
+      0%   { opacity:0; transform: translateX(200px) rotate(720deg) scale(0); }
+      60%  { transform: translateX(-10px) rotate(-20deg) scale(1.1); opacity:1; }
+      80%  { transform: translateX(5px) rotate(5deg); }
+      100% { opacity:1; transform: none; }
+    }
+
+
+
+    /* section title wiggle trigger */
+    .s-title.wiggled { animation: wiggleHeader .6s ease; }
+
+    /* pain emoji jiggle on entry */
+    .pain-emoji.jiggling { animation: jiggle .8s ease; }
+
+    /* pain card hover shake */
+    .pain-card:hover .pain-emoji { animation: jiggle .5s ease; }
+
+    /* step card hover wiggle */
+    .step-card:hover { cursor: pointer; }
+    .step-card:hover .step-num { animation: hoverShake .4s ease; }
+
+    /* table row pop */
+    tbody tr.row-pop td { animation: popIn .4s ease both; }
+
+    /* waitlist box tada */
+    .waitlist-box.tada { animation: tadaa .7s ease both; }
+
+    /* crazy animation classes applied via JS */
+    .anim-flyLeft  { animation: flyInLeft  .7s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-flyRight { animation: flyInRight .7s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-flyBottom{ animation: flyInBottom .7s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-flyTop   { animation: flyInTop   .6s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-tadaa    { animation: tadaa      .7s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-spinIn   { animation: spinIn     .8s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-rubber   { animation: rubberbandIn .7s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-slam     { animation: slamDown   .6s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-bounceSpin { animation: bounceSpin .9s cubic-bezier(.22,.68,0,1.2) both; }
+    .anim-d1 { animation-delay: .05s; }
+    .anim-d2 { animation-delay: .12s; }
+    .anim-d3 { animation-delay: .19s; }
+    .anim-d4 { animation-delay: .26s; }
+    .anim-d5 { animation-delay: .33s; }
+
+    /* override base reveal so crazy anims take over */
+    .crazy-reveal { opacity: 0; }
+    .crazy-reveal.fired { opacity: 1; }
   </style>
 </head>
 <body>
@@ -583,7 +784,10 @@
 <header class="nav">
   <div class="container">
     <div class="nav__inner">
-      <div class="nav__logo">Geek<span>Tomorrow</span></div>
+      <div class="nav__logo">
+        <span class="logo-un">un</span><span class="logo-cloud">cloud</span>
+        <span class="nav__by">by <a href="https://novion.one" target="_blank" rel="noopener">novion.one</a></span>
+      </div>
       <a href="#waitlist" class="nav-btn">Join waitlist →</a>
     </div>
   </div>
@@ -643,10 +847,10 @@
               <div class="device-dot" style="background:#ff5f56"></div>
               <div class="device-dot" style="background:#febc2e"></div>
               <div class="device-dot" style="background:#28c840"></div>
-              <div class="device-url">geektomorrow.local</div>
+              <div class="device-url">uncloud.local</div>
             </div>
             <div class="device-screen">
-              <div class="ds-tagline">GeekTomorrow Dashboard</div>
+              <div class="ds-tagline">uncloud Dashboard</div>
               <div class="ds-headline">Your files.<br /><span>Your rules.</span></div>
               <div class="ds-p">All your photos stored safely at home. No subscriptions. No surveillance.</div>
               <div class="ds-btn">Open my cloud →</div>
@@ -678,25 +882,6 @@
 </section>
 
 
-<!-- ══ TICKER ════════════════════════════════════════════════════ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__track">
-    <span class="ticker__item">No monthly fees</span>
-    <span class="ticker__item">Plug &amp; play setup</span>
-    <span class="ticker__item">100% private</span>
-    <span class="ticker__item">Auto photo backup</span>
-    <span class="ticker__item">Access anywhere</span>
-    <span class="ticker__item">You own your data</span>
-    <span class="ticker__item">Made in India 🇮🇳</span>
-    <span class="ticker__item">No monthly fees</span>
-    <span class="ticker__item">Plug &amp; play setup</span>
-    <span class="ticker__item">100% private</span>
-    <span class="ticker__item">Auto photo backup</span>
-    <span class="ticker__item">Access anywhere</span>
-    <span class="ticker__item">You own your data</span>
-    <span class="ticker__item">Made in India 🇮🇳</span>
-  </div>
-</div>
 
 
 <!-- ══ PAIN ═══════════════════════════════════════════════════════ -->
@@ -824,7 +1009,7 @@
           <tr>
             <th>Feature</th>
             <th>Big Cloud (Google / iCloud)</th>
-            <th>GeekTomorrow ✦</th>
+            <th>uncloud ✦</th>
           </tr>
         </thead>
         <tbody>
@@ -886,10 +1071,21 @@
 </section>
 
 
+<!-- ══ MADE BY ═══════════════════════════════════════════════════ -->
+<div class="madeby">
+  <div class="madeby__label">Crafted by</div>
+  <div class="madeby__divider"></div>
+  <a href="https://novion.one" target="_blank" rel="noopener" class="madeby__maker">
+    <div class="madeby__dot"></div>
+    <div class="madeby__name">novion<span>.one</span></div>
+    <div class="madeby__arrow">→</div>
+  </a>
+</div>
+
 <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
 <footer class="footer">
-  <div class="footer__logo">Geek<span>Tomorrow</span></div>
-  <div class="footer__copy">Built with <span class="footer__heart">♥</span> in India &nbsp;·&nbsp; © 2026 GeekTomorrow. All rights reserved.</div>
+  <div class="footer__logo"><span class="logo-un">un</span><span class="logo-cloud">cloud</span></div>
+<div class="footer__copy">Built with <span class="footer__heart">♥</span> in India &nbsp;·&nbsp; © 2026 uncloud. All rights reserved.</div>
 </footer>
 
 
@@ -932,6 +1128,142 @@
     { threshold: 0.1 }
   );
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  /* ── CRAZY ANIMATIONS ─────────────────────────────────── */
+
+  // Map of selectors → animation classes to apply
+  const crazyMap = [
+    // pain cards fly in from different crazy angles
+    { sel: '.pain-card:nth-child(1)', anim: 'anim-flyLeft',  delay: 'anim-d1' },
+    { sel: '.pain-card:nth-child(2)', anim: 'anim-flyBottom',delay: 'anim-d2' },
+    { sel: '.pain-card:nth-child(3)', anim: 'anim-flyRight', delay: 'anim-d3' },
+    // pain emojis spin in after
+    { sel: '.pain-emoji',             anim: 'anim-spinIn',   delay: '' },
+    // solution cards alternate
+    { sel: '.sol-card:nth-child(1)',  anim: 'anim-flyLeft',  delay: 'anim-d1' },
+    { sel: '.sol-card:nth-child(2)',  anim: 'anim-flyTop',   delay: 'anim-d2' },
+    { sel: '.sol-card:nth-child(3)',  anim: 'anim-flyBottom',delay: 'anim-d3' },
+    { sel: '.sol-card:nth-child(4)',  anim: 'anim-flyRight', delay: 'anim-d4' },
+    // step cards slam down
+    { sel: '.step-card:nth-child(1)', anim: 'anim-slam',    delay: 'anim-d1' },
+    { sel: '.step-card:nth-child(2)', anim: 'anim-tadaa',   delay: 'anim-d2' },
+    { sel: '.step-card:nth-child(3)', anim: 'anim-bounceSpin', delay: 'anim-d3' },
+    // section labels rubber-band in
+    { sel: '.s-label',                anim: 'anim-rubber',  delay: '' },
+    // section titles slam
+    { sel: '.s-title',                anim: 'anim-slam',    delay: 'anim-d1' },
+    // waitlist box
+    { sel: '.waitlist-box',           anim: 'anim-tadaa',   delay: '' },
+    // sol-icons spin
+    { sel: '.sol-icon',               anim: 'anim-spinIn',  delay: 'anim-d1' },
+    // comparison table
+    { sel: '.table-outer',            anim: 'anim-flyBottom', delay: '' },
+  ];
+
+  const crazyObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      if (el.dataset.crazyFired) return;
+      el.dataset.crazyFired = '1';
+      const cfg = JSON.parse(el.dataset.crazyCfg);
+      el.classList.add('crazy-reveal');
+      // tiny rAF so opacity:0 paints before animation
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          el.classList.add('fired', cfg.anim);
+          if (cfg.delay) el.classList.add(cfg.delay);
+          // jiggle pain emojis after flying in
+          if (cfg.anim === 'anim-spinIn' && el.classList.contains('pain-emoji')) {
+            el.addEventListener('animationend', () => el.classList.add('jiggling'), { once: true });
+          }
+          // wiggle section titles
+          if (cfg.anim === 'anim-slam' && el.classList.contains('s-title')) {
+            el.addEventListener('animationend', () => {
+              el.classList.add('wiggled');
+              el.addEventListener('animationend', () => el.classList.remove('wiggled'), { once: true });
+            }, { once: true });
+          }
+        });
+      });
+      crazyObs.unobserve(el);
+    });
+  }, { threshold: 0.15 });
+
+  crazyMap.forEach(cfg => {
+    document.querySelectorAll(cfg.sel).forEach(el => {
+      el.dataset.crazyCfg = JSON.stringify({ anim: cfg.anim, delay: cfg.delay });
+      crazyObs.observe(el);
+    });
+  });
+
+  // Table row pop-in on scroll
+  const tableObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const rows = e.target.querySelectorAll('tbody tr');
+      rows.forEach((r, i) => {
+        setTimeout(() => r.classList.add('row-pop'), i * 100);
+      });
+      tableObs.unobserve(e.target);
+    });
+  }, { threshold: 0.3 });
+  const tableOuter = document.querySelector('.table-outer');
+  if (tableOuter) tableObs.observe(tableOuter);
+
+  // Counter roll-up for "53 people"
+  const proofEl = document.querySelector('.hero__proof strong');
+  if (proofEl) {
+    const target = 53;
+    let started = false;
+    const counterObs = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting || started) return;
+      started = true;
+      let cur = 0;
+      const step = () => {
+        cur = Math.min(cur + Math.ceil((target - cur) / 6 + 1), target);
+        proofEl.textContent = cur + ' people';
+        if (cur < target) setTimeout(step, 40);
+        else {
+          // dramatic finish: bounce the whole proof element
+          const proof = document.querySelector('.hero__proof');
+          proof.style.animation = 'tadaa .5s ease';
+          proof.addEventListener('animationend', () => proof.style.animation = '', { once: true });
+        }
+      };
+      step();
+      counterObs.unobserve(entries[0].target);
+    }, { threshold: 1 });
+    counterObs.observe(proofEl);
+  }
+
+
+
+
+  // Pain card hover: shake the whole card
+  document.querySelectorAll('.pain-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.animation = 'hoverShake .4s ease';
+      card.addEventListener('animationend', () => card.style.animation = '', { once: true });
+    });
+  });
+
+  // Stickers in hero: click to spin wildly
+  document.querySelectorAll('.sticker').forEach(s => {
+    s.style.cursor = 'pointer';
+    s.addEventListener('click', () => {
+      s.style.transition = 'transform .5s cubic-bezier(.22,.68,0,1.8)';
+      s.style.transform = `rotate(${720 + Math.random()*360}deg) scale(1.4)`;
+      setTimeout(() => { s.style.transform = ''; }, 600);
+    });
+  });
+
+  // Nav logo: wiggle on click
+  document.querySelector('.nav__logo')?.addEventListener('click', () => {
+    const logo = document.querySelector('.nav__logo');
+    logo.style.animation = 'jiggle .6s ease';
+    logo.addEventListener('animationend', () => logo.style.animation = '', { once: true });
+  });
 </script>
 
 </body>
