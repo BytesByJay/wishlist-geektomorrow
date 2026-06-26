@@ -7,6 +7,7 @@ export const novionColors = {
     100: "rgb(var(--primary-100) / <alpha-value>)",
     200: "rgb(var(--primary-200) / <alpha-value>)",
     300: "rgb(var(--primary-300) / <alpha-value>)",
+    400: "rgb(var(--primary-400) / <alpha-value>)",
     700: "rgb(var(--primary-700) / <alpha-value>)",
     800: "rgb(var(--primary-800) / <alpha-value>)",
     900: "rgb(var(--primary-900) / <alpha-value>)",
@@ -17,6 +18,7 @@ export const novionColors = {
     100: "rgb(var(--accent-100) / <alpha-value>)",
     200: "rgb(var(--accent-200) / <alpha-value>)",
     700: "rgb(var(--accent-700) / <alpha-value>)",
+    800: "rgb(var(--accent-800) / <alpha-value>)",
   },
   paper: "rgb(var(--paper) / <alpha-value>)",
 } as const;

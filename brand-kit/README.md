@@ -49,18 +49,34 @@ Full scales (50 → 900) live in [`code/tokens.css`](./code/tokens.css).
 
 ## 3. Typography
 
-- **Display + UI**: [Geist Sans](https://vercel.com/font) (variable weight 100–900). Use `font-black` (900) for the wordmark, `font-bold` (700) for headings, `font-medium` (500) for UI, `font-normal` (400) for body.
-- **Mono**: Geist Mono for code, hashes, tokens, technical readouts.
-- **Tracking**: headings get `tracking-tight`. Small uppercase labels get `tracking-[0.18em]` (this is the "by Novion" rhythm - keep it identical across products).
+Novion uses **three** typefaces, all free, all on Google Fonts:
+
+- **Display + UI**: [Geist Sans](https://vercel.com/font) (variable weight 100–900). Use `font-black` (900) for the wordmark and large display, `font-bold` (700) for section titles, `font-medium` (500) for UI, `font-normal` (400) for body.
+- **Mono**: **Geist Mono** for code, hashes, numerals in step badges, technical readouts, the `01 / 02 / 03` corner labels on cards.
+- **Accent display**: **Instrument Serif** *italic* — used ONLY for one accent word inside a headline, no more than one per screen. This is what gives a Novion headline its distinctive bold-sans + italic-serif rhythm:
+
+  > Your files. *Your rules.*
+  > Three steps. *That's it.*
+  > The math *doesn't* lie.
+
+  Pair it with `text-accent-700` for the color. Never set Instrument Serif at body size — it's a display face only.
+
+- **Tracking**: headings get `tracking-tight` (-0.03em to -0.04em on the largest sizes). Small uppercase labels get `tracking-[0.18em]` (this is the "by Novion" rhythm — keep it identical across products).
 
 The "TopApplicant by Novion" lockup pattern:
 
 ```
-[mark]  Top·Applicant         ← font-black, tracking-tight, primary + gray-900
-        BY NOVION             ← 9px, font-medium, tracking-[0.18em], gray-400
+[mark]  Top·Applicant         ← font-black, tracking-tight, primary + primary-700
+        BY NOVION             ← 9.5px, font-medium, tracking-[0.18em], primary-300
 ```
 
 Every product in the family uses **this exact same lockup**, just swapping the product name. That's the cheapest, strongest unifier you have.
+
+Load all three together:
+
+```html
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700;900&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+```
 
 ---
 
@@ -82,21 +98,61 @@ Trust phrasing that's worked on TopApplicant and is worth re-using:
 Every Novion product should feel like it was built from the same kit:
 
 - **Paper background** (`bg-paper`) for every page, every state.
-- **Sticky brand header** at top, backdrop-blurred over paper.
-- **Rounded-2xl cards** with `border border-primary-100` and `shadow-sm`. No heavy shadows.
+- **Paper grain overlay** — add the `.novion-paper-grain` class to `<body>` (defined in `tokens.css`). It's a fixed SVG fractal-noise layer at ~35% opacity, multiply blend. Invisible until you remove it and the page suddenly looks flat.
+- **Sticky brand header** at top, backdrop-blurred over paper (`bg-paper/72` + `backdrop-blur-md`).
+- **Rounded-2xl / 3xl cards** with `border border-primary-100` and a soft layered shadow (`0 1px 2px rgb(0 0 0 / .04), 0 18px 48px -28px rgb(var(--primary) / .14)`). No heavy shadows, no solid drops.
 - **Hairline borders** (`border-primary-100`) not gray-200/300. Quieter, more premium.
+- **Gradient icon tiles** — small icons sit in a 44–48px rounded tile with a top-light gradient and a hairline border. Two variants:
+  - Neutral: `linear-gradient(180deg, #fff, rgb(var(--primary-50)))` + `border-primary-100` + `text-primary-700`.
+  - Accent: `linear-gradient(180deg, rgb(var(--accent-50)), #fff)` + `border-accent-200` + `text-accent-700`. Use this for "the good column" — the Novion-side icons.
 - **Max-width container** `max-w-5xl mx-auto px-6` for landing, `max-w-3xl` for forms, `max-w-2xl` for focused reading.
 - **Sentence-case "Most popular" / "Free" pills** in tracked uppercase, `rounded-full`, accent-tinted backgrounds.
+- **Mono numerals** for ordinals — step badges, card corner labels (`01 / 02 / 03`), stat units. Geist Mono, `font-medium`, `tracking-[0.04em]`.
+
+### The radiating dot
+
+Wherever you'd put a status indicator, use the **radiating dot** pattern — a 6px teal dot with a soft teal ring scaling out and fading every 2s. It's the in-motion sibling of the logo's teal dot.
+
+```html
+<span class="novion-dot"></span>  <!-- ready, defined in tokens.css -->
+```
+
+Use it on: "In development" pills, "Online" badges, the eyebrow above the hero headline, sync-status rows in dashboards. Never more than 2–3 visible at once.
+
+### The dot-grid background
+
+For the hero (and *only* the hero, or one other large empty surface), use `.novion-dot-grid` from `tokens.css`. It's a 22×22 dot pattern, radial-masked so the edges never tile. Pair it with one or two soft `radial-gradient` glows (teal at top-right, charcoal at bottom-left) for depth without color noise.
+
+---
+
+## 5b. Motion
+
+Novion motion is **soft, not bouncy**. Two easings cover everything (both shipped in `tokens.css` as CSS vars):
+
+- `--ease-soft` `cubic-bezier(.2,.65,.25,1)` — default for hovers, reveals, opacity.
+- `--ease-out`  `cubic-bezier(.22,.68,0,1.02)` — slightly more snap; for transforms (card lift, device tilt).
+
+Durations: **180–250ms** for hover interactions, **600–800ms** for scroll-reveal entries. Anything faster reads as twitchy; anything slower reads as sluggish.
+
+Stock keyframes living in `tokens.css`:
+
+- `brand-pulse` — the logo dot.
+- `ring-out` — the radiating status dot.
+- `shimmer` — diagonal highlight sweep. Use on primary CTAs and progress bars. Subtle (`rgb(255 255 255 / .12)` over the button surface).
+- `float-y` — 8px Y-axis float, 6–7s loop. Use on the hero device mockup and 1–2 hero "chips." Never on text.
+
+**Magnetic primary CTA** — primary buttons get a gentle cursor-follow on hover (translate up to ~12% of pointer offset). The JS is six lines; the effect is what separates "fine" from "polished." Pattern lives in [`code/BrandHeader.tsx`](./code/BrandHeader.tsx) usage notes.
 
 ---
 
 ## 6. The 5-minute setup for a new Novion product
 
 1. Copy [`assets/favicon.svg`](./assets/favicon.svg) and [`assets/logo.svg`](./assets/logo.svg) into your project's `public/`.
-2. Copy [`code/tokens.css`](./code/tokens.css) into your global stylesheet (or `@import` it). All CSS vars are now live.
+2. Copy [`code/tokens.css`](./code/tokens.css) into your global stylesheet (or `@import` it). All CSS vars, the radiating dot, paper grain, and dot grid are now live.
 3. Copy [`code/tailwind.colors.ts`](./code/tailwind.colors.ts) and spread `novionColors` into `tailwind.config.ts → theme.extend.colors`.
 4. Copy [`code/BrandHeader.tsx`](./code/BrandHeader.tsx) into `src/components/`. Drop `<BrandHeader withAIPill />` at the top of every page.
-5. Wire the favicon + theme color in your framework's metadata (Next.js example):
+5. Add `class="novion-paper-grain"` to your `<body>` and the three-font link tag from §3 to your `<head>`.
+6. Wire the favicon + theme color in your framework's metadata (Next.js example):
 
    ```tsx
    export const metadata = {
