@@ -66,8 +66,10 @@ Novion uses **three** typefaces, all free, all on Google Fonts:
 The "TopApplicant by Novion" lockup pattern:
 
 ```
-[mark]  Top·Applicant         ← font-black, tracking-tight, primary + primary-700
-        BY NOVION             ← 9.5px, font-medium, tracking-[0.18em], primary-300
+[mark]  Top·Applicant         ← font-black, tracking-tight, text-primary + text-gray-900
+        BY NOVION             ← 9.5px, font-medium, tracking-[0.18em], text-gray-400
+                                                                         (#9ca3af — not a brand token, use Tailwind gray-400)
+        novion.one ↗          ← nav right, text-xs font-semibold, gray-400 → text-primary on hover
 ```
 
 Every product in the family uses **this exact same lockup**, just swapping the product name. That's the cheapest, strongest unifier you have.
@@ -99,7 +101,7 @@ Every Novion product should feel like it was built from the same kit:
 
 - **Paper background** (`bg-paper`) for every page, every state.
 - **Paper grain overlay** — add the `.novion-paper-grain` class to `<body>` (defined in `tokens.css`). It's a fixed SVG fractal-noise layer at ~35% opacity, multiply blend. Invisible until you remove it and the page suddenly looks flat.
-- **Sticky brand header** at top, backdrop-blurred over paper (`bg-paper/72` + `backdrop-blur-md`).
+- **Sticky brand header** at top, backdrop-blurred over paper (`bg-paper/72` + `backdrop-blur-md`). On hover, the mark gets a soft shadow lift — no rotation or translate, just shadow deepening.
 - **Rounded-2xl / 3xl cards** with `border border-primary-100` and a soft layered shadow (`0 1px 2px rgb(0 0 0 / .04), 0 18px 48px -28px rgb(var(--primary) / .14)`). No heavy shadows, no solid drops.
 - **Hairline borders** (`border-primary-100`) not gray-200/300. Quieter, more premium.
 - **Gradient icon tiles** — small icons sit in a 44–48px rounded tile with a top-light gradient and a hairline border. Two variants:

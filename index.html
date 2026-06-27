@@ -140,20 +140,29 @@
       box-shadow: 0 1px 2px rgb(0 0 0 / .05), 0 0 0 1px rgb(var(--primary-100));
       transition: box-shadow .3s var(--ease-soft), transform .3s var(--ease-soft);
     }
-    .lockup:hover .lockup__mark { transform: translateY(-1px) rotate(-2deg); box-shadow: 0 8px 22px rgb(0 0 0 / .1), 0 0 0 1px rgb(var(--primary-200)); }
+    .lockup:hover .lockup__mark { box-shadow: 0 4px 12px rgb(0 0 0 / .1), 0 0 0 1px rgb(var(--primary-200)); }
     .lockup__title {
       font-weight: 900; letter-spacing: -0.03em;
       font-size: 16px; line-height: 1; margin-bottom: 5px;
     }
     .lockup__title .product-a { color: rgb(var(--primary)); }
-    .lockup__title .product-b { color: rgb(var(--primary-700)); }
+    .lockup__title .product-b { color: #111111; }
     .lockup__by {
       font-size: 9.5px; font-weight: 500;
       letter-spacing: 0.18em; text-transform: uppercase;
-      color: rgb(var(--primary-300));
+      color: #9ca3af;
       line-height: 1;
     }
     .nav__right { display: flex; align-items: center; gap: 14px; }
+    .nav__ext {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+      color: #9ca3af;
+      transition: color .2s var(--ease-soft);
+    }
+    .nav__ext:hover { color: rgb(var(--primary)); }
+    .nav__ext svg { opacity: .6; transition: opacity .2s, transform .2s var(--ease-soft); }
+    .nav__ext:hover svg { opacity: 1; transform: translate(1px, -1px); }
 
     .pill {
       display: inline-flex; align-items: center; gap: 8px;
@@ -1027,6 +1036,12 @@
       </a>
 
       <div class="nav__right">
+        <a href="https://novion.one" target="_blank" rel="noopener noreferrer" class="nav__ext">
+          novion.one
+          <svg width="9" height="9" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <path d="M1 9L9 1M9 1H3.5M9 1V6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
         <span class="pill">
           <span class="pill__dot"></span>
           In development
